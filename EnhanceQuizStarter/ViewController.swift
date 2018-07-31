@@ -28,6 +28,8 @@ class ViewController: UIViewController {
         ["Question": "All ducks are birds", "Answer": "True"]
     ]
     
+    // Eventually I think trivia should be removed from view controller.
+    
     // MARK: - Outlets
     
     @IBOutlet weak var questionField: UILabel!
@@ -63,7 +65,7 @@ class ViewController: UIViewController {
     }
     
     func displayScore() {
-        // Hide the answer uttons
+        // Hide the answer buttons
         trueButton.isHidden = true
         falseButton.isHidden = true
         
@@ -103,7 +105,7 @@ class ViewController: UIViewController {
         
         let selectedQuestionDict = trivia[indexOfSelectedQuestion]
         let correctAnswer = selectedQuestionDict["Answer"]
-        
+        // = Question.answer (the answer var of the question modeled using a struct)
         if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
             correctQuestions += 1
             questionField.text = "Correct!"
