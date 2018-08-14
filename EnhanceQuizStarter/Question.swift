@@ -10,25 +10,23 @@ import Foundation //Do I need this?
 
 struct Question {
     var question: String
-    var answer: String
+    var correctAnswer: String
     var possibleAnswers: [String]
 }
 
-let myQuestion = Question(question: "What is love?", answer: "Love is first widening my eyes...", possibleAnswers: ["Love is first widening my eyes...","I don't know", "Nobody knows", "Seriously?", "A dream we both agree on"])
+/*
 
-let test = myQuestion.possibleAnswers[2]
+var triviaLetStruct: [Question] = []          // these must be encapsulated in something (can't be top level)
+//triviaLetStruct += [question1, question2]
 
-let question1 = Question(question: "The electronic \"string\" sounds heard on Gary Numan's \"Cars\" were produced by which Moog synth?", answer: "Polymoog", possibleAnswers: ["Polymoog", "Multimoog", "Minimoog", "Memorymoog"])
-let question2 = Question(question: "Which series of workstation was introduced by Yamaha in 2001?", answer: "Motif", possibleAnswers: ["Tyros", "Phantom", "Motif", "Montage"])
-
-var triviaLetStruct: [Question] = [question1, question2]
-// triviaLetStruct += [question2]
-
-
-
+// Sarah says put += line into a func, struct, or class. I think Class might be better but trying func...
+func TriviaMaker(question: Question) -> [Question] {
+    triviaLetStruct += [question]
+    return triviaLetStruct
+}
 
 
-
+var quiz = TriviaMaker(question: question1)
 
 
 
@@ -40,15 +38,20 @@ class Quiz {
     init(questions: [Question]) {
         self.questions = questions
     }
+    
+    func AddQuestionsToClass(question: Question) -> [Question] {
+        questions += [question]
+        return questions
+    }
 }
+
+var myQuizClass = Quiz(questions: [Question(question: "Which series of workstation was introduced by Yamaha in 2001?", correctAnswer: "Motif", possibleAnswers: ["Tyros", "Phantom", "Motif", "Montage"])])
+myQuizClass.AddQuestionsToClass(Question(question: "What is a 909?", correctAnswer: "A drum machine", possibleAnswers: ["An area code", "A drum machine"]))
+
+
+
+
 
 // Adrian says: define a bunch of questions as consts (let question1 = Question(...), etc.) then add these to a collection.
 
-let triviaStruct: [Question] = [Question(question: "What is love?", answer: "Love is first widening my eyes...", possibleAnswers: ["Love is first widening my eyes...", "Nobody knows", "Seriously?", "A dream we both agree on"]), Question(question: "What time is it?", answer: "Time to get ill", possibleAnswers: ["4pm", "Time to get ill", "It's your time", "Time is a flat circle"])]
-
-let trivia: [[String : String]] = [
-    ["Question": "Only female koalas can whistle", "Answer": "False"],
-    ["Question": "Blue whales are technically whales", "Answer": "True"],
-    ["Question": "Camels are cannibalistic", "Answer": "False"],
-    ["Question": "All ducks are birds", "Answer": "True"]
-]
+*/

@@ -21,6 +21,11 @@ class ViewController: UIViewController {
     
     var gameSound: SystemSoundID = 0
     
+//    var triviaLetStruct: [Question] = [question1, question2]
+//    //var triviaLetStruct += [question1, question2]
+//    
+    
+    
     let trivia: [[String : String]] = [
         ["Question": "Only female koalas can whistle", "Answer": "False"],
         ["Question": "Blue whales are technically whales", "Answer": "True"],
