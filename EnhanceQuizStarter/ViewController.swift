@@ -62,10 +62,11 @@ class ViewController: UIViewController {
         AudioServicesPlaySystemSound(gameSound)
     }
     
+    // swapping triviaCollection for trivia (dict). NEED TO Remove dict from variable name.
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: trivia.count)
-        let questionDictionary = trivia[indexOfSelectedQuestion]
-        questionField.text = questionDictionary["Question"]
+        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaCollection.count)
+        let questionDictionary = triviaCollection[indexOfSelectedQuestion]
+        questionField.text = questionDictionary.question
         playAgainButton.isHidden = true
     }
     
@@ -108,8 +109,10 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        let selectedQuestionDict = trivia[indexOfSelectedQuestion]
-        let correctAnswer = selectedQuestionDict["Answer"]
+        // NEED TO CHANGE NAME OF SELECTED QUESTION DICT.
+        
+        let selectedQuestionDict = triviaCollection[indexOfSelectedQuestion]
+        let correctAnswer = selectedQuestionDict.correctAnswer
         // = Question.answer (the answer var of the question modeled using a struct)
         if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
             correctQuestions += 1
