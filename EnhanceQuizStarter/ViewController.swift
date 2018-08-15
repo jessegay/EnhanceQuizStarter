@@ -106,6 +106,8 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
+        // FIXME: Aha! I see both buttons call the checkAnswer method. I need to make 4 buttons and modify the logic accordingly.
+        
         // FIXME: NEED TO CHANGE NAME OF SELECTED QUESTION DICT. Initially they used selectedQuestionDict (different from selectedQuestionDictionary which was used in the displayQuestion method. Why are they different names? Couln't they both be the same since they're referring to the current question being asked? I'm going to try using the same name (currentQuestion.) If it breaks, chose another similar name.
         
         let currentQuestion = triviaCollection[indexOfSelectedQuestion]
