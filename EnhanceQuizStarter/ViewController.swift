@@ -21,9 +21,6 @@ class ViewController: UIViewController {
     
     var gameSound: SystemSoundID = 0
     
-//    var triviaLetStruct: [Question] = [question1, question2]
-//    //var triviaLetStruct += [question1, question2]
-//    
     
     
     let trivia: [[String : String]] = [
@@ -33,7 +30,7 @@ class ViewController: UIViewController {
         ["Question": "All ducks are birds", "Answer": "True"]
     ]
     
-    // Eventually I think trivia should be removed from view controller.
+    // Eventually I think trivia should be removed from view controller.(yes)
     
     // MARK: - Outlets
     
@@ -62,11 +59,11 @@ class ViewController: UIViewController {
         AudioServicesPlaySystemSound(gameSound)
     }
     
-    // swapping triviaCollection for trivia (dict). NEED TO Remove dict from variable name.
+    // swapping triviaCollection for trivia (dict). NEED TO Remove dict from variable name. (replaced with currentQuestion)
     func displayQuestion() {
         indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaCollection.count)
-        let questionDictionary = triviaCollection[indexOfSelectedQuestion]
-        questionField.text = questionDictionary.question
+        let currentQuestion = triviaCollection[indexOfSelectedQuestion]
+        questionField.text = currentQuestion.question
         playAgainButton.isHidden = true
     }
     
@@ -109,11 +106,11 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        // NEED TO CHANGE NAME OF SELECTED QUESTION DICT.
+        // FIXME: NEED TO CHANGE NAME OF SELECTED QUESTION DICT. Initially they used selectedQuestionDict (different from selectedQuestionDictionary which was used in the displayQuestion method. Why are they different names? Couln't they both be the same since they're referring to the current question being asked?
         
         let selectedQuestionDict = triviaCollection[indexOfSelectedQuestion]
         let correctAnswer = selectedQuestionDict.correctAnswer
-        // = Question.answer (the answer var of the question modeled using a struct)
+        
         if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
             correctQuestions += 1
             questionField.text = "Correct!"
