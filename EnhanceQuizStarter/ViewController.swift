@@ -106,10 +106,10 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        // FIXME: NEED TO CHANGE NAME OF SELECTED QUESTION DICT. Initially they used selectedQuestionDict (different from selectedQuestionDictionary which was used in the displayQuestion method. Why are they different names? Couln't they both be the same since they're referring to the current question being asked?
+        // FIXME: NEED TO CHANGE NAME OF SELECTED QUESTION DICT. Initially they used selectedQuestionDict (different from selectedQuestionDictionary which was used in the displayQuestion method. Why are they different names? Couln't they both be the same since they're referring to the current question being asked? I'm going to try using the same name (currentQuestion.) If it breaks, chose another similar name.
         
-        let selectedQuestionDict = triviaCollection[indexOfSelectedQuestion]
-        let correctAnswer = selectedQuestionDict.correctAnswer
+        let currentQuestion = triviaCollection[indexOfSelectedQuestion]
+        let correctAnswer = currentQuestion.correctAnswer
         
         if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
             correctQuestions += 1
