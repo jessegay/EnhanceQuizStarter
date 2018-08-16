@@ -24,7 +24,7 @@
 		88324ACD20F5AE61004AE160 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; usesTabs = 0; wrapsLines = 1; };
 		88324ACF20F5B2A6004AE160 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		8847579121224823005DF9E3 /* TriviaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaCollection.swift; sourceTree = "<group>"; };
-		972A72AD2056F06C0059EF4A /* EnhanceQuizStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnhanceQuizStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		972A72AD2056F06C0059EF4A /* EnhanceQuizStarterJBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnhanceQuizStarterJBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		972A72B02056F06C0059EF4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		972A72B22056F06C0059EF4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		972A72B52056F06C0059EF4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		972A72AE2056F06C0059EF4A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				972A72AD2056F06C0059EF4A /* EnhanceQuizStarter.app */,
+				972A72AD2056F06C0059EF4A /* EnhanceQuizStarterJBG.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,9 +82,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		972A72AC2056F06C0059EF4A /* EnhanceQuizStarter */ = {
+		972A72AC2056F06C0059EF4A /* EnhanceQuizStarterJBG */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 972A72BF2056F06C0059EF4A /* Build configuration list for PBXNativeTarget "EnhanceQuizStarter" */;
+			buildConfigurationList = 972A72BF2056F06C0059EF4A /* Build configuration list for PBXNativeTarget "EnhanceQuizStarterJBG" */;
 			buildPhases = (
 				972A72A92056F06C0059EF4A /* Sources */,
 				972A72AA2056F06C0059EF4A /* Frameworks */,
@@ -94,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = EnhanceQuizStarter;
+			name = EnhanceQuizStarterJBG;
 			productName = EnhanceQuizStarter;
-			productReference = 972A72AD2056F06C0059EF4A /* EnhanceQuizStarter.app */;
+			productReference = 972A72AD2056F06C0059EF4A /* EnhanceQuizStarterJBG.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -115,7 +115,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 972A72A82056F06C0059EF4A /* Build configuration list for PBXProject "EnhanceQuizStarter" */;
+			buildConfigurationList = 972A72A82056F06C0059EF4A /* Build configuration list for PBXProject "EnhanceQuizStarterJBG" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -128,7 +128,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				972A72AC2056F06C0059EF4A /* EnhanceQuizStarter */,
+				972A72AC2056F06C0059EF4A /* EnhanceQuizStarterJBG */,
 			);
 		};
 /* End PBXProject section */
@@ -323,7 +323,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		972A72A82056F06C0059EF4A /* Build configuration list for PBXProject "EnhanceQuizStarter" */ = {
+		972A72A82056F06C0059EF4A /* Build configuration list for PBXProject "EnhanceQuizStarterJBG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				972A72BD2056F06C0059EF4A /* Debug */,
@@ -332,7 +332,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		972A72BF2056F06C0059EF4A /* Build configuration list for PBXNativeTarget "EnhanceQuizStarter" */ = {
+		972A72BF2056F06C0059EF4A /* Build configuration list for PBXNativeTarget "EnhanceQuizStarterJBG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				972A72C02056F06C0059EF4A /* Debug */,
