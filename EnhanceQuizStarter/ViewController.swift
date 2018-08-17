@@ -115,6 +115,8 @@ class ViewController: UIViewController {
         let currentQuestion = triviaCollection[indexOfSelectedQuestion]
         let correctAnswer = currentQuestion.correctAnswer
         
+        // FIXME: This needs to be changed to "If sender == correct answer... I might need to use string interpolation to get value to compare.
+        
         if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
             correctQuestions += 1
             questionField.text = "Correct!"
