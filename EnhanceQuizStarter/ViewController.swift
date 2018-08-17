@@ -21,14 +21,16 @@ class ViewController: UIViewController {
     
     var gameSound: SystemSoundID = 0
     
+   // let quiz = QuizStruct ()
+   
     
     
-    let trivia: [[String : String]] = [
-        ["Question": "Only female koalas can whistle", "Answer": "False"],
-        ["Question": "Blue whales are technically whales", "Answer": "True"],
-        ["Question": "Camels are cannibalistic", "Answer": "False"],
-        ["Question": "All ducks are birds", "Answer": "True"]
-    ]
+//    let trivia: [[String : String]] = [
+//        ["Question": "Only female koalas can whistle", "Answer": "False"],
+//        ["Question": "Blue whales are technically whales", "Answer": "True"],
+//        ["Question": "Camels are cannibalistic", "Answer": "False"],
+//        ["Question": "All ducks are birds", "Answer": "True"]
+//    ]
     
     // Eventually I think trivia should be removed from view controller.(yes)
     

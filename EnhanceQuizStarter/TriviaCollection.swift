@@ -8,7 +8,16 @@
 
 //import Foundation
 
-let triviaCollection = [question1, question2, question3, question4, question5, question6, question7, question8]
+// Elena has a Struct (Quiz) that contains a single constant, questions, which is an array of Question objects. How is this better than my method of just declaring the constant triviaCollection?
+
+//I could do something like:
+//
+//struct QuizStruct {
+//    var triviaCollection = [question1, question2, question3, question4, question5, question6, question7, question8]
+//}
+
+
+ let triviaCollection = [question1, question2, question3, question4, question5, question6, question7, question8]
 
 let question1 = Question(question: "What does VCO stand for?", correctAnswer: "Voltage Controlled Oscillator", possibleAnswers: ["Voltage Capacitance Oscillator", "Vactrol Controlled Oscillator", "Vector Controlled Oscillator", "Voltage Controlled Oscillator"])
 

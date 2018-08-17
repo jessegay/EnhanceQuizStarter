@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EnhanceQuizStarter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EnhanceQuizStarterJBG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,14 +42,34 @@
                                     <action selector="checkAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OGW-Ev-fPx"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eic-Nx-foS">
-                                <rect key="frame" x="37" y="387" width="300" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eic-Nx-foS">
+                                <rect key="frame" x="37" y="457" width="300" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.57647058819999997" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Play Again"/>
                                 <connections>
                                     <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0DS-Q9-gCH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vK9-JM-dBe">
+                                <rect key="frame" x="37" y="366" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.047058823530000002" green="0.47450980390000003" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="choice3"/>
+                                <connections>
+                                    <action selector="checkAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xae-da-6Ry"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdF-iY-naM">
+                                <rect key="frame" x="37" y="404" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.047058823530000002" green="0.47450980390000003" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="choice4"/>
+                                <connections>
+                                    <action selector="checkAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hX6-np-kep"/>
                                 </connections>
                             </button>
                         </subviews>
