@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     var gameSound: SystemSoundID = 0
     
-   // let quiz = QuizStruct ()
+    let triviaStruct = QuestionsStruct ()//now all questions will be pulled from this
    
     
     
@@ -63,11 +63,13 @@ class ViewController: UIViewController {
     
     // swapping triviaCollection for trivia (dict). NEED TO Remove dict from variable name. (replaced with currentQuestion)
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaCollection.count)
-        let currentQuestion = triviaCollection[indexOfSelectedQuestion]
+        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
+        let currentQuestion = triviaStruct.triviaCollection[indexOfSelectedQuestion]
         questionField.text = currentQuestion.question
         playAgainButton.isHidden = true
     }
+    
+    // Should this be inside the QuizManager class?^^
     
     func displayScore() {
         // Hide the answer buttons
@@ -112,7 +114,7 @@ class ViewController: UIViewController {
         
         // FIXME: NEED TO CHANGE NAME OF SELECTED QUESTION DICT. Initially they used selectedQuestionDict (different from selectedQuestionDictionary which was used in the displayQuestion method. Why are they different names? Couln't they both be the same since they're referring to the current question being asked? I'm going to try using the same name (currentQuestion.) If it breaks, chose another similar name.
         
-        let currentQuestion = triviaCollection[indexOfSelectedQuestion]
+        let currentQuestion = triviaStruct.triviaCollection[indexOfSelectedQuestion]
         let correctAnswer = currentQuestion.correctAnswer
         
         // FIXME: This needs to be changed to "If sender == correct answer... I might need to use string interpolation to get value to compare.
@@ -140,4 +142,5 @@ class ViewController: UIViewController {
     
 
 }
+
 
