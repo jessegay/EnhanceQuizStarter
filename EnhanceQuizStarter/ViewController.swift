@@ -12,28 +12,19 @@ import AudioToolbox
 
 class ViewController: UIViewController {
     
-    // MARK: - Properties
+    // MARK: - Properties. GLOBAL VARIABLES GO HERE. Even if they are immediately assigned a different value via viewDidLoad, they need to be created here first.
     
-    let questionsPerRound = 4
-    var questionsAsked = 0
-    var correctQuestions = 0
-    var indexOfSelectedQuestion = 0
-    
-    var gameSound: SystemSoundID = 0
+//    let questionsPerRound = 4
+//    var questionsAsked = 0
+//    var correctQuestions = 0
+//    var indexOfSelectedQuestion = 0
+//
+//    var gameSound: SystemSoundID = 0
     
     let triviaStruct = QuestionsStruct ()//now all questions will be pulled from this
-   
+    var myQuiz = Quiz() // Now all quiz properties have been initialized by this instance. Swapped out values for properties of myQuiz e.g. indexOfSelectedQuestion becomes myQuiz.indexOfSelectedQuestion
     
-    
-//    let trivia: [[String : String]] = [
-//        ["Question": "Only female koalas can whistle", "Answer": "False"],
-//        ["Question": "Blue whales are technically whales", "Answer": "True"],
-//        ["Question": "Camels are cannibalistic", "Answer": "False"],
-//        ["Question": "All ducks are birds", "Answer": "True"]
-//    ]
-    
-    // Eventually I think trivia should be removed from view controller.(yes)
-    
+
     // MARK: - Outlets
     
     @IBOutlet weak var questionField: UILabel!
@@ -54,17 +45,17 @@ class ViewController: UIViewController {
     func loadGameStartSound() {
         let path = Bundle.main.path(forResource: "GameSound", ofType: "wav")
         let soundUrl = URL(fileURLWithPath: path!)
-        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &gameSound)
+        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &myQuiz.gameSound)
     }
     
     func playGameStartSound() {
-        AudioServicesPlaySystemSound(gameSound)
+        AudioServicesPlaySystemSound(myQuiz.gameSound)
     }
     
     // swapping triviaCollection for trivia (dict). NEED TO Remove dict from variable name. (replaced with currentQuestion)
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
-        let currentQuestion = triviaStruct.triviaCollection[indexOfSelectedQuestion]
+        myQuiz.indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
+        let currentQuestion = triviaStruct.triviaCollection[myQuiz.indexOfSelectedQuestion]
         questionField.text = currentQuestion.question
         playAgainButton.isHidden = true
     }
@@ -79,11 +70,11 @@ class ViewController: UIViewController {
         // Display play again button
         playAgainButton.isHidden = false
         
-        questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
+        questionField.text = "Way to go!\nYou got \(myQuiz.correctQuestions) out of \(myQuiz.questionsPerRound) correct!"
     }
     
     func nextRound() {
-        if questionsAsked == questionsPerRound {
+        if myQuiz.questionsAsked == myQuiz.questionsPerRound {
             // Game is over
             displayScore()
         } else {
@@ -108,19 +99,19 @@ class ViewController: UIViewController {
     
     @IBAction func checkAnswer(_ sender: UIButton) {
         // Increment the questions asked counter
-        questionsAsked += 1
+        myQuiz.questionsAsked += 1
         
         // FIXME: Aha! I see both buttons call the checkAnswer method. I need to make 4 buttons and modify the logic accordingly.
         
         // FIXME: NEED TO CHANGE NAME OF SELECTED QUESTION DICT. Initially they used selectedQuestionDict (different from selectedQuestionDictionary which was used in the displayQuestion method. Why are they different names? Couln't they both be the same since they're referring to the current question being asked? I'm going to try using the same name (currentQuestion.) If it breaks, chose another similar name.
         
-        let currentQuestion = triviaStruct.triviaCollection[indexOfSelectedQuestion]
+        let currentQuestion = triviaStruct.triviaCollection[myQuiz.indexOfSelectedQuestion]
         let correctAnswer = currentQuestion.correctAnswer
         
         // FIXME: This needs to be changed to "If sender == correct answer... I might need to use string interpolation to get value to compare.
         
         if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
-            correctQuestions += 1
+            myQuiz.correctQuestions += 1
             questionField.text = "Correct!"
         } else {
             questionField.text = "Sorry, wrong answer!"
@@ -135,8 +126,8 @@ class ViewController: UIViewController {
         trueButton.isHidden = false
         falseButton.isHidden = false
         
-        questionsAsked = 0
-        correctQuestions = 0
+        myQuiz.questionsAsked = 0
+        myQuiz.correctQuestions = 0
         nextRound()
     }
     
