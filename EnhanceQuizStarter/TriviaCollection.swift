@@ -6,17 +6,6 @@
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
 
-//import Foundation
-
-// Elena has a Struct (Quiz) that contains a single constant, questions, which is an array of Question objects (her "Quiz" functions like my "Trivia Collection".) How is this better than my method of just declaring the constant triviaCollection, as I do below?
-//
-//In order to be like her code, I could do something like:
-//
-//struct QuizStruct {
-//    var triviaCollection = [question1, question2, question3, question4, question5, question6, question7, question8]
-//}
-
-
 struct QuestionsStruct {
     
     var triviaCollection: [Question] = [
@@ -39,6 +28,15 @@ struct QuestionsStruct {
 
 
 
+//import Foundation
+
+// Elena has a Struct (Quiz) that contains a single constant, questions, which is an array of Question objects (her "Quiz" functions like my "Trivia Collection".) How is this better than my method of just declaring the constant triviaCollection, as I do below?
+//
+//In order to be like her code, I could do something like:
+//
+//struct QuizStruct {
+//    var triviaCollection = [question1, question2, question3, question4, question5, question6, question7, question8]
+//}
 
 /*
 struct QuestionsStruct {

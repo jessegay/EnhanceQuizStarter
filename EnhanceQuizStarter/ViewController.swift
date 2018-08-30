@@ -8,7 +8,7 @@
 
 import UIKit
 import GameKit
-import AudioToolbox
+//import AudioToolbox
 
 class ViewController: UIViewController {
     
@@ -21,26 +21,40 @@ class ViewController: UIViewController {
 //
 //    var gameSound: SystemSoundID = 0
     
-    let triviaStruct = QuestionsStruct ()//now all questions will be pulled from this
+    
+    
+    //let triviaStruct = QuestionsStruct ()//now all questions will be pulled from this
+    
     var myQuiz = Quiz() // Now all quiz properties have been initialized by this instance. Swapped out values for properties of myQuiz e.g. indexOfSelectedQuestion becomes myQuiz.indexOfSelectedQuestion
+    
+    
     
 
     // MARK: - Outlets
+    //Trying to move into Quiz to fix unresolved identifier errors. But that seems to make it less readable (since the IBOutlet connections are buried within the instance of Quiz.) Need to manually reconnect the pasted outlets in Quiz.
     
-    @IBOutlet weak var questionField: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
-    @IBOutlet weak var playAgainButton: UIButton!
+//    @IBOutlet weak var questionField: UILabel!
+//    @IBOutlet weak var trueButton: UIButton!
+//    @IBOutlet weak var falseButton: UIButton!
+//    @IBOutlet weak var playAgainButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadGameStartSound()
         playGameStartSound()
         displayQuestion()
     }
     
     // MARK: - Helpers
+//    @IBAction func test(_ sender: UIButton) {
+//        testTextChanger()
+//    }
+//
+//    func testTextChanger() {
+//        questionField.text = "test string"
+//    }
+//
+    
     
     func loadGameStartSound() {
         let path = Bundle.main.path(forResource: "GameSound", ofType: "wav")
@@ -54,8 +68,8 @@ class ViewController: UIViewController {
     
     // swapping triviaCollection for trivia (dict). NEED TO Remove dict from variable name. (replaced with currentQuestion)
     func displayQuestion() {
-        myQuiz.indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
-        let currentQuestion = triviaStruct.triviaCollection[myQuiz.indexOfSelectedQuestion]
+        myQuiz.indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: myQuiz.triviaStruct.triviaCollection.count)
+        let currentQuestion = myQuiz.triviaStruct.triviaCollection[myQuiz.indexOfSelectedQuestion]
         questionField.text = currentQuestion.question
         playAgainButton.isHidden = true
     }
