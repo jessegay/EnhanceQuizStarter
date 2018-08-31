@@ -1,12 +1,12 @@
 //
-//  QuizManager.swift
+//  Quiz.swift
 //  EnhanceQuizStarter
 //
-//  Created by Jesse Gay on 7/26/18.
+//  Created by Jesse Gay on 7/10/18.
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
 
-//import Foundation
+// This is both quiz and quizmanager. Holds properties and funcs.
 
 /*
  QuizManager ​object ​which ​could:
@@ -16,21 +16,31 @@
  3.check ​if ​the ​answer ​is ​correct, ​etc.
  */
 
-//I think I can move most a BUNCH of the quiz actions from ViewDidLoad into here (the mechanism for picking a random number that is used as an index to get a question from the TriviaCollection object. EDIT, maybe quiz parameters go in Quiz object, but the mechanics go here (picking, checking, etc.)
-
-// MARK: initialize ​the ​Questions ​and ​add ​them ​to ​the Quiz.
+import AudioToolbox // This is for SystemSoundID. Does it need to be in here or should it be in the ViewController (for use by VC or quiz manager)? Asked in Slack. If I comment it out in ViewController the app seems to work.
 import GameKit
 
-
-//class QuizManager {
-//    var myQuiz = Quiz()
-//    let triviaStruct = QuestionsStruct ()
-//    
-//    func displayQuestion() {
-//        myQuiz.indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
-//        let currentQuestion = triviaStruct.triviaCollection[myQuiz.indexOfSelectedQuestion]
-//        questionField.text = currentQuestion.question
-//        playAgainButton.isHidden = true
-//    }
-//}
+class QuizManager {
+    let questionsPerRound = 4
+    var questionsAsked = 0
+    var correctQuestions = 0
+    var indexOfSelectedQuestion = 0
+    var gameSound: SystemSoundID = 0
+    var alreadyAskedQuestions: [Question] = [] // or use indices
+    
+    let triviaStruct = QuestionsStruct () //This includes the array of questions
+    
+    //This should just be getRandomQuestion (and add it to the array, check for non-repeating, increment questions-asked) and return either the index or the question itself as the var currentQuestion. Then displayQuestion, in ViewController, can just refer to currentQuestion.
+        func getRandomQuestion() -> Question {
+            // Get random number
+            indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
+            // Check for repetition (todo)
+            // Add to
+//            let currentQuestion = triviaStruct.triviaCollection[indexOfSelectedQuestion]
+//            questionField.text = currentQuestion.question
+//            playAgainButton.isHidden = true
+            
+            return triviaStruct.triviaCollection[indexOfSelectedQuestion]
+        }
+    }
+    
 

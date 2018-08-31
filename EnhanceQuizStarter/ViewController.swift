@@ -12,37 +12,33 @@ import GameKit
 
 class ViewController: UIViewController {
     
-    // MARK: - Properties. GLOBAL VARIABLES GO HERE. Even if they are immediately assigned a different value via viewDidLoad, they need to be created here first.
+// MARK: - Properties. GLOBAL VARIABLES GO HERE. Even if they are immediately assigned a different value via viewDidLoad, they need to be created here first.
     
 //    let questionsPerRound = 4
 //    var questionsAsked = 0
 //    var correctQuestions = 0
 //    var indexOfSelectedQuestion = 0
-//
 //    var gameSound: SystemSoundID = 0
+//    Now these are all encapsulated as properties of myQuizManager.
     
-    
-    
-    //let triviaStruct = QuestionsStruct ()//now all questions will be pulled from this
-    
-    var myQuiz = Quiz() // Now all quiz properties have been initialized by this instance. Swapped out values for properties of myQuiz e.g. indexOfSelectedQuestion becomes myQuiz.indexOfSelectedQuestion
+    var myQuizManager = QuizManager() // Now all QuizManager properties have been initialized by this instance. Swapped out values for properties of myQuizManager e.g. indexOfSelectedQuestion becomes myQuizManager.indexOfSelectedQuestion
     
     
     
 
     // MARK: - Outlets
-    //Trying to move into Quiz to fix unresolved identifier errors. But that seems to make it less readable (since the IBOutlet connections are buried within the instance of Quiz.) Need to manually reconnect the pasted outlets in Quiz.
-    
-//    @IBOutlet weak var questionField: UILabel!
-//    @IBOutlet weak var trueButton: UIButton!
-//    @IBOutlet weak var falseButton: UIButton!
-//    @IBOutlet weak var playAgainButton: UIButton!
+ 
+    @IBOutlet weak var questionField: UILabel!
+    @IBOutlet weak var trueButton: UIButton!
+    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var playAgainButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGameStartSound()
         playGameStartSound()
-        displayQuestion()
+        
+        //displayQuestion()
     }
     
     // MARK: - Helpers
@@ -59,17 +55,18 @@ class ViewController: UIViewController {
     func loadGameStartSound() {
         let path = Bundle.main.path(forResource: "GameSound", ofType: "wav")
         let soundUrl = URL(fileURLWithPath: path!)
-        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &myQuiz.gameSound)
+        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &myQuizManager.gameSound)
     }
     
     func playGameStartSound() {
-        AudioServicesPlaySystemSound(myQuiz.gameSound)
+        AudioServicesPlaySystemSound(myQuizManager.gameSound)
     }
     
-    // swapping triviaCollection for trivia (dict). NEED TO Remove dict from variable name. (replaced with currentQuestion)
+    
     func displayQuestion() {
-        myQuiz.indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: myQuiz.triviaStruct.triviaCollection.count)
-        let currentQuestion = myQuiz.triviaStruct.triviaCollection[myQuiz.indexOfSelectedQuestion]
+        let currentQuestion = myQuizManager.getRandomQuestion()
+//        myQuizManager.indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: myQuizManager.triviaStruct.triviaCollection.count)
+//        let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
         questionField.text = currentQuestion.question
         playAgainButton.isHidden = true
     }
@@ -84,11 +81,11 @@ class ViewController: UIViewController {
         // Display play again button
         playAgainButton.isHidden = false
         
-        questionField.text = "Way to go!\nYou got \(myQuiz.correctQuestions) out of \(myQuiz.questionsPerRound) correct!"
+        questionField.text = "Way to go!\nYou got \(myQuizManager.correctQuestions) out of \(myQuizManager.questionsPerRound) correct!"
     }
     
     func nextRound() {
-        if myQuiz.questionsAsked == myQuiz.questionsPerRound {
+        if myQuizManager.questionsAsked == myQuizManager.questionsPerRound {
             // Game is over
             displayScore()
         } else {
@@ -113,19 +110,19 @@ class ViewController: UIViewController {
     
     @IBAction func checkAnswer(_ sender: UIButton) {
         // Increment the questions asked counter
-        myQuiz.questionsAsked += 1
+        myQuizManager.questionsAsked += 1
         
         // FIXME: Aha! I see both buttons call the checkAnswer method. I need to make 4 buttons and modify the logic accordingly.
         
         // FIXME: NEED TO CHANGE NAME OF SELECTED QUESTION DICT. Initially they used selectedQuestionDict (different from selectedQuestionDictionary which was used in the displayQuestion method. Why are they different names? Couln't they both be the same since they're referring to the current question being asked? I'm going to try using the same name (currentQuestion.) If it breaks, chose another similar name.
         
-        let currentQuestion = triviaStruct.triviaCollection[myQuiz.indexOfSelectedQuestion]
+        let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
         let correctAnswer = currentQuestion.correctAnswer
         
         // FIXME: This needs to be changed to "If sender == correct answer... I might need to use string interpolation to get value to compare.
         
         if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
-            myQuiz.correctQuestions += 1
+            myQuizManager.correctQuestions += 1
             questionField.text = "Correct!"
         } else {
             questionField.text = "Sorry, wrong answer!"
@@ -140,8 +137,8 @@ class ViewController: UIViewController {
         trueButton.isHidden = false
         falseButton.isHidden = false
         
-        myQuiz.questionsAsked = 0
-        myQuiz.correctQuestions = 0
+        myQuizManager.questionsAsked = 0
+        myQuizManager.correctQuestions = 0
         nextRound()
     }
     
