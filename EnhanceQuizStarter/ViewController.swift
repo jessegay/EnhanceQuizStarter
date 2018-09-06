@@ -5,7 +5,7 @@
 //  Created by Pasan Premaratne on 3/12/18.
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
-
+// FIXME: Fix layout so buttons and label resize to fit text/title
 import UIKit
 import GameKit
 //import AudioToolbox
@@ -64,8 +64,7 @@ class ViewController: UIViewController {
     
     func displayQuestion() {
         let currentQuestion = myQuizManager.getRandomQuestion()
-//        myQuizManager.indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: myQuizManager.triviaStruct.triviaCollection.count)
-//        let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
+
         questionField.text = currentQuestion.question
         option1Button.setTitle("\(currentQuestion.possibleAnswers[0])", for: .normal)
         option2Button.setTitle("\(currentQuestion.possibleAnswers[1])", for: .normal)
@@ -83,6 +82,7 @@ class ViewController: UIViewController {
         
         // Display play again button
         playAgainButton.isHidden = false
+        // FIXME: All text after Way to go isn't being displayed. Button isn't being resized so it's hidden.
         
         questionField.text = "Way to go!\nYou got \(myQuizManager.correctQuestions) out of \(myQuizManager.questionsPerRound) correct!"
     }
@@ -115,20 +115,20 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         myQuizManager.questionsAsked += 1
         
-        // FIXME: NEED TO CHANGE NAME OF SELECTED QUESTION DICT. Initially they used selectedQuestionDict (different from selectedQuestionDictionary which was used in the displayQuestion method. Why are they different names? Couln't they both be the same since they're referring to the current question being asked? I'm going to try using the same name (currentQuestion.) If it breaks, chose another similar name.
-        
         let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
         let correctAnswer = currentQuestion.correctAnswer
         
-        // FIXME: This needs to be changed to "If sender == correct answer... I might need to use string interpolation to get value to compare.
-        
-        if (sender === option1Button &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
+        // 2 checks(x4)? If it came from this button, && if this button's text==correctanwers's text
+
+        if (sender === option1Button &&  option1Button.currentTitle == correctAnswer) ||
+           (sender === option2Button &&  option2Button.currentTitle == correctAnswer) ||
+           (sender === option3Button &&  option3Button.currentTitle == correctAnswer) ||
+           (sender === option4Button &&  option4Button.currentTitle == correctAnswer) {
             myQuizManager.correctQuestions += 1
             questionField.text = "Correct!"
         } else {
             questionField.text = "Sorry, wrong answer!"
         }
-        
         loadNextRound(delay: 2)
     }
     

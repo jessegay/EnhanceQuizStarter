@@ -20,6 +20,7 @@ import AudioToolbox // This is for SystemSoundID. Does it need to be in here or 
 import GameKit
 
 class QuizManager {
+    // MARK: Properties
     let questionsPerRound = 4
     var questionsAsked = 0
     var correctQuestions = 0
@@ -28,7 +29,7 @@ class QuizManager {
     var alreadyAskedQuestions: [Int] = [] // use indices
     
     let triviaStruct = QuestionsStruct () //This includes the array of questions
-    
+    // MARK: Methods
     //getRandomQuestion (and add it to the array, check for non-repeating, increment questions-asked) and return either the index or the question itself as the var currentQuestion. Then displayQuestion, in ViewController, can just refer to currentQuestion.
         func getRandomQuestion() -> Question {
             // Get random number. This is an intermediate var (which is checked for repetition before being assigned to indexOfSelectedQuestion)
@@ -42,7 +43,12 @@ class QuizManager {
             alreadyAskedQuestions.append(indexOfSelectedQuestion)
             // return the question
             return triviaStruct.triviaCollection[indexOfSelectedQuestion]
+            
         }
+    // TODO: Move checkAnswer() from ViewController to here, then call it from ViewController
+    
+    
+    
     }
     
 
