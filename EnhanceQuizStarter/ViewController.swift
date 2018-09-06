@@ -23,14 +23,13 @@ class ViewController: UIViewController {
     
     var myQuizManager = QuizManager() // Now all QuizManager properties have been initialized by this instance. Swapped out values for properties of myQuizManager e.g. indexOfSelectedQuestion becomes myQuizManager.indexOfSelectedQuestion
     
-    
-    
-
     // MARK: - Outlets
  
     @IBOutlet weak var questionField: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var option1Button: UIButton!
+    @IBOutlet weak var option2Button: UIButton!
+    @IBOutlet weak var option3Button: UIButton!
+    @IBOutlet weak var option4Button: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
 
     override func viewDidLoad() {
@@ -38,7 +37,7 @@ class ViewController: UIViewController {
         loadGameStartSound()
         playGameStartSound()
         
-        //displayQuestion()
+        displayQuestion()
     }
     
     // MARK: - Helpers
@@ -68,15 +67,19 @@ class ViewController: UIViewController {
 //        myQuizManager.indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: myQuizManager.triviaStruct.triviaCollection.count)
 //        let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
         questionField.text = currentQuestion.question
+        option1Button.setTitle("\(currentQuestion.possibleAnswers[0])", for: .normal)
+        option2Button.setTitle("\(currentQuestion.possibleAnswers[1])", for: .normal)
+        option3Button.setTitle("\(currentQuestion.possibleAnswers[2])", for: .normal)
+        option4Button.setTitle("\(currentQuestion.possibleAnswers[3])", for: .normal)
         playAgainButton.isHidden = true
     }
     
-    // Should this be inside the QuizManager class?^^
-    
     func displayScore() {
         // Hide the answer buttons
-        trueButton.isHidden = true
-        falseButton.isHidden = true
+        option1Button.isHidden = true
+        option2Button.isHidden = true
+        option3Button.isHidden = true
+        option4Button.isHidden = true
         
         // Display play again button
         playAgainButton.isHidden = false
@@ -112,8 +115,6 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         myQuizManager.questionsAsked += 1
         
-        // FIXME: Aha! I see both buttons call the checkAnswer method. I need to make 4 buttons and modify the logic accordingly.
-        
         // FIXME: NEED TO CHANGE NAME OF SELECTED QUESTION DICT. Initially they used selectedQuestionDict (different from selectedQuestionDictionary which was used in the displayQuestion method. Why are they different names? Couln't they both be the same since they're referring to the current question being asked? I'm going to try using the same name (currentQuestion.) If it breaks, chose another similar name.
         
         let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
@@ -121,7 +122,7 @@ class ViewController: UIViewController {
         
         // FIXME: This needs to be changed to "If sender == correct answer... I might need to use string interpolation to get value to compare.
         
-        if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
+        if (sender === option1Button &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
             myQuizManager.correctQuestions += 1
             questionField.text = "Correct!"
         } else {
@@ -134,8 +135,10 @@ class ViewController: UIViewController {
     
     @IBAction func playAgain(_ sender: UIButton) {
         // Show the answer buttons
-        trueButton.isHidden = false
-        falseButton.isHidden = false
+        option1Button.isHidden = false
+        option2Button.isHidden = false
+        option3Button.isHidden = false
+        option4Button.isHidden = false
         
         myQuizManager.questionsAsked = 0
         myQuizManager.correctQuestions = 0

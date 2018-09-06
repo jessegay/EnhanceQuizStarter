@@ -25,20 +25,22 @@ class QuizManager {
     var correctQuestions = 0
     var indexOfSelectedQuestion = 0
     var gameSound: SystemSoundID = 0
-    var alreadyAskedQuestions: [Question] = [] // or use indices
+    var alreadyAskedQuestions: [Int] = [] // use indices
     
     let triviaStruct = QuestionsStruct () //This includes the array of questions
     
-    //This should just be getRandomQuestion (and add it to the array, check for non-repeating, increment questions-asked) and return either the index or the question itself as the var currentQuestion. Then displayQuestion, in ViewController, can just refer to currentQuestion.
+    //getRandomQuestion (and add it to the array, check for non-repeating, increment questions-asked) and return either the index or the question itself as the var currentQuestion. Then displayQuestion, in ViewController, can just refer to currentQuestion.
         func getRandomQuestion() -> Question {
-            // Get random number
-            indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
-            // Check for repetition (todo)
-            // Add to
-//            let currentQuestion = triviaStruct.triviaCollection[indexOfSelectedQuestion]
-//            questionField.text = currentQuestion.question
-//            playAgainButton.isHidden = true
-            
+            // Get random number. This is an intermediate var (which is checked for repetition before being assigned to indexOfSelectedQuestion)
+            var randomNumber = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
+            // Check for repetition
+            while alreadyAskedQuestions.contains(randomNumber)  {
+                randomNumber = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
+                }
+            indexOfSelectedQuestion = randomNumber
+            // Add to alreadyAskedQuestions
+            alreadyAskedQuestions.append(indexOfSelectedQuestion)
+            // return the question
             return triviaStruct.triviaCollection[indexOfSelectedQuestion]
         }
     }
