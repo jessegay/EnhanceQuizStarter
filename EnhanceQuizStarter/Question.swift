@@ -6,7 +6,7 @@
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
 
-import Foundation //Do I need this?
+//import Foundation //Do I need this? Seems to work without it.
 
 struct Question {
     var question: String

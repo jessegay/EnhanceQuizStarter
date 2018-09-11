@@ -36,20 +36,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         loadGameStartSound()
         playGameStartSound()
-        
         displayQuestion()
     }
     
     // MARK: - Helpers
-//    @IBAction func test(_ sender: UIButton) {
-//        testTextChanger()
-//    }
-//
-//    func testTextChanger() {
-//        questionField.text = "test string"
-//    }
-//
-    
     
     func loadGameStartSound() {
         let path = Bundle.main.path(forResource: "GameSound", ofType: "wav")
@@ -60,7 +50,6 @@ class ViewController: UIViewController {
     func playGameStartSound() {
         AudioServicesPlaySystemSound(myQuizManager.gameSound)
     }
-    
     
     func displayQuestion() {
         let currentQuestion = myQuizManager.getRandomQuestion()
@@ -82,8 +71,6 @@ class ViewController: UIViewController {
         
         // Display play again button
         playAgainButton.isHidden = false
-        // FIXME: All text after Way to go isn't being displayed. Button isn't being resized so it's hidden.
-        
         questionField.text = "Way to go!\nYou got \(myQuizManager.correctQuestions) out of \(myQuizManager.questionsPerRound) correct!"
     }
     
@@ -118,7 +105,7 @@ class ViewController: UIViewController {
         let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
         let correctAnswer = currentQuestion.correctAnswer
         
-        // 2 checks(x4)? If it came from this button, && if this button's text==correctanwers's text
+        // 2 checks(x4): If it came from this button, && if this button's text == correctAnwers's text
 
         if (sender === option1Button &&  option1Button.currentTitle == correctAnswer) ||
            (sender === option2Button &&  option2Button.currentTitle == correctAnswer) ||

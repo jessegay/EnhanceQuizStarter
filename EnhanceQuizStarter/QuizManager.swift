@@ -30,8 +30,9 @@ class QuizManager {
     
     let triviaStruct = QuestionsStruct () //This includes the array of questions
     // MARK: Methods
-    //getRandomQuestion (and add it to the array, check for non-repeating, increment questions-asked) and return either the index or the question itself as the var currentQuestion. Then displayQuestion, in ViewController, can just refer to currentQuestion.
-        func getRandomQuestion() -> Question {
+    
+            // getRandomQuestion
+            func getRandomQuestion() -> Question {
             // Get random number. This is an intermediate var (which is checked for repetition before being assigned to indexOfSelectedQuestion)
             var randomNumber = GKRandomSource.sharedRandom().nextInt(upperBound: triviaStruct.triviaCollection.count)
             // Check for repetition
@@ -43,12 +44,9 @@ class QuizManager {
             alreadyAskedQuestions.append(indexOfSelectedQuestion)
             // return the question
             return triviaStruct.triviaCollection[indexOfSelectedQuestion]
-            
         }
-    // TODO: Move checkAnswer() from ViewController to here, then call it from ViewController
-    
-    
-    
+    // TODO: Move checkAnswer() from ViewController to here, then call it from ViewController. Wait, do I even need to do this? A bunch of things break when I try to do this. Maybe not a good idea for now.
+
     }
     
 
