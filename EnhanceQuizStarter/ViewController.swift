@@ -102,18 +102,14 @@ class ViewController: UIViewController {
         // Increment the questionsAsked property
         myQuizManager.questionsAsked += 1
         
-        let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
-        let correctAnswer = currentQuestion.correctAnswer
+        //let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
+        //let correctAnswer = currentQuestion.correctAnswer
+        // myQuizManager.buttonPressed = sender.tag // Assigns tag of button pressed to buttonPressed var so it will be availble in the function. Wait, maybe don't need this
         
-        // 2 checks(x4): If it came from this button, && if this button's text == correctAnwers's text
-
-//        if (sender === option1Button &&  option1Button.currentTitle == correctAnswer) ||
-//           (sender === option2Button &&  option2Button.currentTitle == correctAnswer) ||
-//           (sender === option3Button &&  option3Button.currentTitle == correctAnswer) ||
-//           (sender === option4Button &&  option4Button.currentTitle == correctAnswer)
-        if sender.tag == correctAnswer {
-            myQuizManager.correctResponses += 1
-            questionField.text = "Correct!"
+        //if sender.tag == correctAnswer
+            if myQuizManager.isCorrect(optionSelected: sender.tag){
+            //myQuizManager.correctResponses += 1
+            questionField.text = "You got it!"
         } else {
             questionField.text = "Sorry, wrong answer!"
         }

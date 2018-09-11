@@ -27,6 +27,7 @@ class QuizManager {
     var indexOfSelectedQuestion = 0
     var gameSound: SystemSoundID = 0
     var alreadyAskedQuestions: [Int] = [] // use indices
+    //var buttonPressed = 0
     
     let triviaStruct = QuestionsStruct () //This includes the array of questions
     // MARK: Methods
@@ -45,21 +46,23 @@ class QuizManager {
             // return the question
             return triviaStruct.triviaCollection[indexOfSelectedQuestion]
         }
-    // TODO: Move checkAnswer() from ViewController to here, then call it from ViewController. A bunch of things break when I try to do this. Investigating new logic using sender.tag
-/*
-    func checkAnswer() -> Bool {
+    // TODO: Move checkAnswer() from ViewController to here, then call it from ViewController.Investigating new logic using sender.tag
+
+    func isCorrect(optionSelected: Int) -> Bool {
         let currentQuestion = triviaStruct.triviaCollection[indexOfSelectedQuestion]
         let correctAnswer = currentQuestion.correctAnswer
         
-        if sender.tag == correctAnswer {
+        if optionSelected == correctAnswer {
             correctResponses += 1
+            return true
             //questionField.text = "Correct!"
         } else {
             //questionField.text = "Sorry, wrong answer!"
         }
         //loadNextRound(delay: 2)
+        return false
     }
-*/
+
 // Maybe the questionField changes and loadNextRound() can stay in the ViewController (since they are controlling view related stuff.) I have to figure out how to make them listen to the value that checkAnswer() returns though.
 
 
