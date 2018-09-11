@@ -45,8 +45,29 @@ class QuizManager {
             // return the question
             return triviaStruct.triviaCollection[indexOfSelectedQuestion]
         }
-    // TODO: Move checkAnswer() from ViewController to here, then call it from ViewController. Wait, do I even need to do this? A bunch of things break when I try to do this. Maybe not a good idea for now.
+    // TODO: Move checkAnswer() from ViewController to here, then call it from ViewController. A bunch of things break when I try to do this. Investigating new logic using sender.tag
 
+    func checkAnswer() -> Bool {
+        let currentQuestion = triviaStruct.triviaCollection[indexOfSelectedQuestion]
+        let correctAnswer = currentQuestion.correctAnswer
+        
+        if (sender === option1Button &&  option1Button.currentTitle == correctAnswer) ||
+            (sender === option2Button &&  option2Button.currentTitle == correctAnswer) ||
+            (sender === option3Button &&  option3Button.currentTitle == correctAnswer) ||
+            (sender === option4Button &&  option4Button.currentTitle == correctAnswer) {
+            correctResponses += 1
+            questionField.text = "Correct!"
+        } else {
+            questionField.text = "Sorry, wrong answer!"
+        }
+        loadNextRound(delay: 2)
     }
-    
+
+// Maybe the questionField changes and loadNextRound() can stay in the ViewController (since they are controlling view related stuff.) I have to figure out how to make them listen to the value that checkAnswer() returns though.
+
+
+
+
+
+}  // Yes you need this curly brace :)
 

@@ -10,8 +10,14 @@
 
 struct Question {
     var question: String
-    var correctAnswer: String
+    var correctAnswer: Int
     var possibleAnswers: [String]
 }
 
+// Original version where correctAnswer is a String.
+//struct Question {
+//    var question: String
+//    var correctAnswer: String
+//    var possibleAnswers: [String]
+//}
 

@@ -107,10 +107,11 @@ class ViewController: UIViewController {
         
         // 2 checks(x4): If it came from this button, && if this button's text == correctAnwers's text
 
-        if (sender === option1Button &&  option1Button.currentTitle == correctAnswer) ||
-           (sender === option2Button &&  option2Button.currentTitle == correctAnswer) ||
-           (sender === option3Button &&  option3Button.currentTitle == correctAnswer) ||
-           (sender === option4Button &&  option4Button.currentTitle == correctAnswer) {
+//        if (sender === option1Button &&  option1Button.currentTitle == correctAnswer) ||
+//           (sender === option2Button &&  option2Button.currentTitle == correctAnswer) ||
+//           (sender === option3Button &&  option3Button.currentTitle == correctAnswer) ||
+//           (sender === option4Button &&  option4Button.currentTitle == correctAnswer)
+        if sender.tag == {
             myQuizManager.correctResponses += 1
             questionField.text = "Correct!"
         } else {
