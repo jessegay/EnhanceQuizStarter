@@ -2,10 +2,10 @@
 //  ViewController.swift
 //  EnhanceQuizStarter
 //
-//  Created by Pasan Premaratne on 3/12/18.
+//  Created by Jesse Gay on 9/10/18.
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
-// FIXME: Fix layout so buttons and label resize to fit text/title
+
 import UIKit
 import GameKit
 //import AudioToolbox
@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
 //    let questionsPerRound = 4
 //    var questionsAsked = 0
-//    var correctQuestions = 0
+//    var correctResponses = 0
 //    var indexOfSelectedQuestion = 0
 //    var gameSound: SystemSoundID = 0
 //    Now these are all encapsulated as properties of myQuizManager.
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
         
         // Display play again button
         playAgainButton.isHidden = false
-        questionField.text = "Way to go!\nYou got \(myQuizManager.correctQuestions) out of \(myQuizManager.questionsPerRound) correct!"
+        questionField.text = "Way to go!\nYou got \(myQuizManager.correctResponses) out of \(myQuizManager.questionsPerRound) correct!"
     }
     
     func nextRound() {
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
            (sender === option2Button &&  option2Button.currentTitle == correctAnswer) ||
            (sender === option3Button &&  option3Button.currentTitle == correctAnswer) ||
            (sender === option4Button &&  option4Button.currentTitle == correctAnswer) {
-            myQuizManager.correctQuestions += 1
+            myQuizManager.correctResponses += 1
             questionField.text = "Correct!"
         } else {
             questionField.text = "Sorry, wrong answer!"
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
         option4Button.isHidden = false
         
         myQuizManager.questionsAsked = 0
-        myQuizManager.correctQuestions = 0
+        myQuizManager.correctResponses = 0
         nextRound()
     }
     

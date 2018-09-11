@@ -23,7 +23,7 @@ class QuizManager {
     // MARK: Properties
     let questionsPerRound = 4
     var questionsAsked = 0
-    var correctQuestions = 0
+    var correctResponses = 0
     var indexOfSelectedQuestion = 0
     var gameSound: SystemSoundID = 0
     var alreadyAskedQuestions: [Int] = [] // use indices
