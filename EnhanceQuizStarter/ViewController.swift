@@ -99,7 +99,7 @@ class ViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func checkAnswer(_ sender: UIButton) {
-        // Increment the questions asked counter
+        // Increment the questionsAsked property
         myQuizManager.questionsAsked += 1
         
         let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
 //           (sender === option2Button &&  option2Button.currentTitle == correctAnswer) ||
 //           (sender === option3Button &&  option3Button.currentTitle == correctAnswer) ||
 //           (sender === option4Button &&  option4Button.currentTitle == correctAnswer)
-        if sender.tag == {
+        if sender.tag == correctAnswer {
             myQuizManager.correctResponses += 1
             questionField.text = "Correct!"
         } else {
