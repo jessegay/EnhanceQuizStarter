@@ -60,6 +60,7 @@ class ViewController: UIViewController {
         option3Button.setTitle("\(currentQuestion.possibleAnswers[2])", for: .normal)
         option4Button.setTitle("\(currentQuestion.possibleAnswers[3])", for: .normal)
         playAgainButton.isHidden = true
+        print("displayQuestion() has been called")
     }
     
     func displayScore() {
@@ -72,14 +73,20 @@ class ViewController: UIViewController {
         // Display play again button
         playAgainButton.isHidden = false
         questionField.text = "Way to go!\nYou got \(myQuizManager.correctResponses) out of \(myQuizManager.questionsPerRound) correct!"
+        // Temporary print diagnostic
+        print("displayScore() has been called")
     }
     
     func nextRound() {
+        // Temporary print diagnostic
+        print("nextRound() has been called")
         if myQuizManager.questionsAsked == myQuizManager.questionsPerRound {
             // Game is over
             displayScore()
+            print("I'm stuck")
         } else {
             // Continue game
+            print("displayQuestion() is broken if you see this but no question appears")
             displayQuestion()
         }
     }
@@ -102,6 +109,8 @@ class ViewController: UIViewController {
         // Increment the questionsAsked property
         myQuizManager.questionsAsked += 1
         
+        // Disable buttons until next round so repeated clicks don't mess up myQuizManager properties
+        
         //let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
         //let correctAnswer = currentQuestion.correctAnswer
         // myQuizManager.buttonPressed = sender.tag // Assigns tag of button pressed to buttonPressed var so it will be availble in the function. Wait, maybe don't need this
@@ -113,20 +122,32 @@ class ViewController: UIViewController {
         } else {
             questionField.text = "Sorry, wrong answer!"
         }
-        loadNextRound(delay: 2)
+        loadNextRound(delay: 1)
     }
     
     
     @IBAction func playAgain(_ sender: UIButton) {
+        // Reset myQuizManager properties
+        myQuizManager.questionsAsked = 0
+        myQuizManager.correctResponses = 0
+        myQuizManager.alreadyAskedQuestions = []
+        
         // Show the answer buttons
         option1Button.isHidden = false
         option2Button.isHidden = false
         option3Button.isHidden = false
         option4Button.isHidden = false
         
-        myQuizManager.questionsAsked = 0
-        myQuizManager.correctResponses = 0
+        // Verify that buttons are being un-hidden
+        print("\(option1Button.isHidden)")
+        
+        // Start the next round
+        // Verify that myQuizManager properties are being reset
+        print("\(myQuizManager.questionsAsked)")
+        print("\(myQuizManager.correctResponses)")
+        print("\(String(describing: questionField.text))")
         nextRound()
+        
     }
     
 
