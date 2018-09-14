@@ -13,14 +13,7 @@ import GameKit
 class ViewController: UIViewController {
     
 // MARK: - Properties. GLOBAL VARIABLES GO HERE. Even if they are immediately assigned a different value via viewDidLoad, they need to be created here first.
-    
-//    let questionsPerRound = 4
-//    var questionsAsked = 0
-//    var correctResponses = 0
-//    var indexOfSelectedQuestion = 0
-//    var gameSound: SystemSoundID = 0
-//    Now these are all encapsulated as properties of myQuizManager.
-    
+
     var myQuizManager = QuizManager() // Now all QuizManager properties have been initialized by this instance. Swapped out values for properties of myQuizManager e.g. indexOfSelectedQuestion becomes myQuizManager.indexOfSelectedQuestion
     
     // MARK: - Outlets
@@ -52,15 +45,22 @@ class ViewController: UIViewController {
     }
     
     func displayQuestion() {
+        // Get random question
         let currentQuestion = myQuizManager.getRandomQuestion()
-
+        
+        // Display question and options on label and buttons
         questionField.text = currentQuestion.question
         option1Button.setTitle("\(currentQuestion.possibleAnswers[0])", for: .normal)
         option2Button.setTitle("\(currentQuestion.possibleAnswers[1])", for: .normal)
         option3Button.setTitle("\(currentQuestion.possibleAnswers[2])", for: .normal)
         option4Button.setTitle("\(currentQuestion.possibleAnswers[3])", for: .normal)
         playAgainButton.isHidden = true
-        print("displayQuestion() has been called")
+        
+        // Enable buttons
+        option1Button.isEnabled = true
+        option2Button.isEnabled = true
+        option3Button.isEnabled = true
+        option4Button.isEnabled = true
     }
     
     func displayScore() {
@@ -73,20 +73,14 @@ class ViewController: UIViewController {
         // Display play again button
         playAgainButton.isHidden = false
         questionField.text = "Way to go!\nYou got \(myQuizManager.correctResponses) out of \(myQuizManager.questionsPerRound) correct!"
-        // Temporary print diagnostic
-        print("displayScore() has been called")
     }
     
     func nextRound() {
-        // Temporary print diagnostic
-        print("nextRound() has been called")
         if myQuizManager.questionsAsked == myQuizManager.questionsPerRound {
             // Game is over
             displayScore()
-            print("I'm stuck")
         } else {
             // Continue game
-            print("displayQuestion() is broken if you see this but no question appears")
             displayQuestion()
         }
     }
@@ -109,22 +103,20 @@ class ViewController: UIViewController {
         // Increment the questionsAsked property
         myQuizManager.questionsAsked += 1
         
-        // Disable buttons until next round so repeated clicks don't mess up myQuizManager properties
+        // Disable buttons until next round so repeated clicks don't mess up myQuizManager.alreadyAskedQuestions
+        option1Button.isEnabled = false
+        option2Button.isEnabled = false
+        option3Button.isEnabled = false
+        option4Button.isEnabled = false
         
-        //let currentQuestion = myQuizManager.triviaStruct.triviaCollection[myQuizManager.indexOfSelectedQuestion]
-        //let correctAnswer = currentQuestion.correctAnswer
-        // myQuizManager.buttonPressed = sender.tag // Assigns tag of button pressed to buttonPressed var so it will be availble in the function. Wait, maybe don't need this
-        
-        //if sender.tag == correctAnswer
+        // Check answer and provide paths for true and false
             if myQuizManager.isCorrect(optionSelected: sender.tag){
-            //myQuizManager.correctResponses += 1
             questionField.text = "You got it!"
         } else {
             questionField.text = "Sorry, wrong answer!"
         }
         loadNextRound(delay: 1)
     }
-    
     
     @IBAction func playAgain(_ sender: UIButton) {
         // Reset myQuizManager properties
@@ -138,19 +130,9 @@ class ViewController: UIViewController {
         option3Button.isHidden = false
         option4Button.isHidden = false
         
-        // Verify that buttons are being un-hidden
-        print("\(option1Button.isHidden)")
-        
         // Start the next round
-        // Verify that myQuizManager properties are being reset
-        print("\(myQuizManager.questionsAsked)")
-        print("\(myQuizManager.correctResponses)")
-        print("\(String(describing: questionField.text))")
         nextRound()
-        
     }
-    
-
 }
 
 
