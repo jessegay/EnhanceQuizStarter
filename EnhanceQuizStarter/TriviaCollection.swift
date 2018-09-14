@@ -6,6 +6,8 @@
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
 
+// This acts as a "library" of questions that QuizManager can pull from. Add more Questions here to expand the library.
+
 struct QuestionsStruct {
     var triviaCollection: [Question] = [
     Question(question: "What does VCO stand for?", correctAnswer: 3, possibleAnswers: ["Voltage Capacitance Oscillator", "Vactrol Controlled Oscillator", "Vector Controlled Oscillator", "Voltage Controlled Oscillator"]),

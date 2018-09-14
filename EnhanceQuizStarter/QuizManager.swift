@@ -6,9 +6,9 @@
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
 
-// This is both quiz and quizmanager. Holds properties and methods.
+// This acts as both quiz and quizmanager (in my mental model.) Holds properties and has methods.
 
-import AudioToolbox // This is for SystemSoundID. Does it need to be in here or should it be in the ViewController (for use by VC or quiz manager)? Asked in Slack. If I comment it out in ViewController the app seems to work.
+import AudioToolbox // This is for SystemSoundID. Does it need to be in here or should it be in the ViewController (for use by VC or quiz manager)? Asked in Slack but no response yet. I commented it out in ViewController and the app seems to work, so i'll leave it that way for now.
 import GameKit
 
 class QuizManager {
@@ -38,7 +38,6 @@ class QuizManager {
         return triviaStruct.triviaCollection[indexOfSelectedQuestion]
         }
     // Check answer
-
     func isCorrect(optionSelected: Int) -> Bool {
         let currentQuestion = triviaStruct.triviaCollection[indexOfSelectedQuestion]
         let correctAnswer = currentQuestion.correctAnswer

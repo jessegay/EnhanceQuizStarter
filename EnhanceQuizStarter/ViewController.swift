@@ -8,7 +8,7 @@
 
 import UIKit
 import GameKit
-//import AudioToolbox
+// import AudioToolbox. This is included in QuizManager.swift, so I think I can comment it out here.
 
 class ViewController: UIViewController {
     
@@ -72,8 +72,22 @@ class ViewController: UIViewController {
         
         // Display play again button
         playAgainButton.isHidden = false
-        questionField.text = "Way to go!\nYou got \(myQuizManager.correctResponses) out of \(myQuizManager.questionsPerRound) correct!"
-    }
+        
+        // Display ending message
+        switch myQuizManager.correctResponses {
+        case myQuizManager.questionsPerRound:
+            questionField.text = "Way to go!\nYou got \(myQuizManager.correctResponses) out of \(myQuizManager.questionsPerRound) correct!"
+        case (myQuizManager.questionsPerRound - 1), (myQuizManager.questionsPerRound - 2) :
+            questionField.text = "Pretty good!\nYou got \(myQuizManager.correctResponses) out of \(myQuizManager.questionsPerRound) correct!"
+        default:
+            questionField.text = "Try again? \nYou got \(myQuizManager.correctResponses) out of \(myQuizManager.questionsPerRound) correct."
+        }
+        // if myQuizManager.correctResponses >= 3 {
+        //questionField.text = "Way to go!\nYou got \(myQuizManager.correctResponses) out of \(myQuizManager.questionsPerRound) correct!"
+        //} else if myQuizManager.correctResponses >= 1 && <3 {
+            
+        }
+    
     
     func nextRound() {
         if myQuizManager.questionsAsked == myQuizManager.questionsPerRound {
@@ -134,5 +148,4 @@ class ViewController: UIViewController {
         nextRound()
     }
 }
-
 
